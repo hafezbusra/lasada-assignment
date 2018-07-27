@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.new(
-  id: 2,
+  id: 3,
   name: "Andy Leverenz",
-  email: "andy@example.com",
+  email: "Aandy@test.com",
   password: "password",
   password_confirmation: "password"
 )
@@ -22,7 +22,7 @@ Instrument.create!([{
   description: "Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna.",
   condition: "Excellent",
   finish: "Red",
-  price: "2999",
+  price: "999",
   image: Rails.root.join("app/assets/images/instrument1.jpg").open,
   user_id: user.id
 },
@@ -33,7 +33,7 @@ Instrument.create!([{
   description: "Hello and thank you for looking at my Item. We are proud to present this stunning 2018 Gibson Les Paul Standard in Bourbon Burst in 100% Mint/Unplayed condition! The 2017 LP Standards are extremely nice,  with a super comfortable necks, and awesome bold finishes.  This Bourbon Burst finish is absolutely stunning! The tone that comes out of this monster is everything you would expect from a Les Paul Standard!! The guitar sounds awesome and has that famous Les Paul  Tone.  Very easy to play with a nice comfortable standard neck featuring a compound radius fret board which means shredding speed is easier on a Gibson! This is one great guitar for the money!  Will  ship via Fed Ex Ground or Home Delivery in Brand New Gibson case with pictured case candy insured for full purchase price!",
   condition: "Used",
   finish: "Red",
-  price: "2595",
+  price: "595",
   image: Rails.root.join("app/assets/images/instrument2.jpg").open,
   user_id: user.id
 },
@@ -45,7 +45,7 @@ Instrument.create!([{
 The nitro-cellulose lacquer finish and our proprietary antiquing process make each Classic Antique™ feel like it has been loved for years. The Classic Antique now includes: our innovative SSCII (Silent Single-Coil) hum cancelling system, a vintage tinted nitrocellulose neck with stainless steel frets, and a Maple fingerboard option.",
   condition: "New",
   finish: "Seafoam",
-  price: "2845",
+  price: "845",
   image: Rails.root.join("app/assets/images/instrument3.jpg").open,
   user_id: user.id
 },
