@@ -18,7 +18,11 @@ class LineItemsController < ApplicationController
   def new
     @line_item = LineItem.new
   end
-
+    
+  def payment
+      format.html { redirect_to root_path, notice: 'Thank you for buying with us.' }
+  end
+    
   # GET /line_items/1/edit
   def edit
   end

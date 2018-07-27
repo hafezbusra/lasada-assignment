@@ -6,9 +6,12 @@
   <%= render(@cart.line_items) %>
 
   <div class="columns">
-    <div class="column">
+    <div class="buttons">
       <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: "Are you sure? " }, class: "button is-danger" %>
+      <a class="button is-info show">Make Payment</a>
     </div>
+      
+     
     <div class="column total has-text-right">
       <h4 class="title is-4">
         <span class="f5 has-text-grey">Total:</span> <%= number_to_currency(@cart.total_price) %>
@@ -16,3 +19,21 @@
     </div>
   </div>
 </section>
+
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Are you sure you want to pay <%= number_to_currency(@cart.total_price) %></p>
+    </section>
+    <footer class="modal-card-foot">
+      <%= link_to 'Pay', @cart, method: :delete, class: "button is-success" %>
+      <button class="button cancel">Cancel</button>
+    </footer>
+  </div>
+</div>
