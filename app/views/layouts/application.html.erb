@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flanger</title>
+    <title>Lasada</title>
     <%= csrf_meta_tags %>
-
+    <%= favicon_link_tag 'lasada.png' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -21,10 +21,11 @@
       <p class="alert"><%= alert %></p>
     </div>
     <% end %>
-     <nav class="navbar is-warning" role="navigation" aria-label="main navigation">
+     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= link_to root_path, class:"navbar-item" do %>
-          <h1 class="title is-5">Flanger</h1>
+          <%= image_tag("lasada.png") %>
+          <h1 class="title is-3">Lasada</h1>
         <% end  %>
       <div class="navbar-burger burger" data-target="navbar">
         <span></span>
@@ -61,8 +62,8 @@
               </div>
             <% else %>
 
-            <%= link_to "Sign In", new_user_session_path, class:"navbar-item button is-warning" %>
-            <%= link_to "Sign up", new_user_registration_path, class:"navbar-item button is-warning"%>
+            <%= link_to "Sign In", new_user_session_path, class:"navbar-item button is-primary" %>
+            <%= link_to "Sign up", new_user_registration_path, class:"navbar-item button is-primary"%>
 
             <% end %>
 

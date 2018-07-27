@@ -1,5 +1,5 @@
 class Instrument < ApplicationRecord
-  before_destroy :not_referenced_by_any_line_item
+  before_destroy :not_refereced_by_any_line_item
   belongs_to :user, optional: true
   has_many :line_items
 
@@ -11,7 +11,7 @@ class Instrument < ApplicationRecord
   validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum aloud. "}
   validates :price, length: { maximum: 7 }
 
-  BRAND = %w{ Fender Gibson Epiphone ESP Martin Dean Taylor Jackson PRS  Ibanez Charvel Washburn }
+  BRAND = %w{ Electronic-Devices Electronic-Accessories Home-Appliances Health&Beauty Babies&Toy Groceries&Pet Home&Lifestyle Women's-Fashion Men's-Fashion  Fashion-Accessories Sports&Travel Automative&Motorcycles }
   FINISH = %w{ Black White Navy Blue Red Clear Satin Yellow Seafoam }
   CONDITION = %w{ New Excellent Mint Used Fair Poor }
 
