@@ -1,0 +1,123 @@
+<% content_for :header do %>
+  <section class="hero is-warning in-active" id="hero-search" >   
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns ml2 mr2 is-centered">
+          <div class="column is-12 is-centered">
+            <%= simple_form_for :product, url: search_products_url, method: :get, html: { multipart: true } do |f| %>
+              <div class="columns">
+
+                <div class="field column">
+                  <div class="control">
+                    <%= f.input :category, required: false, input_html: { class: "input is-dark is-rounded"}, wrapper: false, as: :select, collection: Product::BRAND, label: false, prompt: "Select" %>
+                  </div>
+                </div>
+
+                <div class="field column">
+                  <div class="control">
+                    <%= f.input :type, required: true, as: :select, collection: ["Title", "Seller"], prompt: "By", label: false, input_html: { class: "input is-dark is-rounded"}, wrapper: false %>
+                  </div>
+                </div>
+
+                <div class="field column is-8">
+                    <div class="control">
+                      <%= f.input :val, required: true, placeholder: "Search field", input_html: { class: "input is-dark is-rounded"}, wrapper: false, label: false %>
+                  </div>
+                </div>
+
+                <div class="field column">
+                  <div class="control">
+                    <%= f.submit "Go", class: 'button is-dark is-outlined is-rounded' %>
+
+                  </div>
+                </div>
+
+              </div>
+            <% end %>
+          </div>
+          <button style="float: right;" class="delete is-small" id="search-dismiss"></button></h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="hero" id="hero-add" style="height: 25px;">
+    <div class="hero-body">
+    </div>
+  </section>
+<% end %>
+
+<% if @products == nil || @products.count == 0 %>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="subtitle is-1">
+          No Product
+        </h1>
+      </div>
+    </div>
+  </section>
+<% else %>
+  <div class="columns ml2 mr2 is-centered"  style="margin-top: 15px;">
+    <%= paginate @products %>
+  </div>
+
+  <div class="product-index-grid pt4 mb4">
+    
+    <% @products.each do |product| %>
+      <div class="product border-light" style="background-color: #fff7e2;">
+        <div class="product-thumb">
+          <% if !product.image.attached? %>
+            <%= link_to image_tag("noimg.png", style: "max-height: 800px; object-fit: cover;"), product %>
+          <% else %>
+            <%= link_to image_tag(product.image, style: "height: 150px; object-fit: cover;", class: "pimg"), product %>
+          <% end %>
+
+          <div class="condition">
+            <% if product.quantity? %>
+              <% if product.quantity > 0 && product.condition? %>
+                <span class="tag is-dark"><%= product.condition %></span>
+                <span class="tag is-dark"><%= "x#{product.quantity}" %></span>
+              <% else %>
+                <span class="tag is-dark"><%= product.condition %></span>
+                <span class="tag is-dark"><%= "x#{product.quantity}" %></span>
+              <% end %>
+            <% else %>
+              <span class="tag is-danger">Sold out</span>
+            <% end %>
+          </div>
+        </div>
+
+
+      <div class="pa3">
+
+        <h3 class="fw7 f4 title"><%= link_to product.title, product %></h3>
+        <% if product_author(product) %>
+          <p class="has-text-gray fg pt1">Sold by
+            <%= link_to product_list_path(user_id: current_user.id) do %> 
+              <span class="tag is-success">me</span>
+            <% end %>
+            <% c = loc_count(product.id) %>
+            <% if c > 0 %>
+              <span class="tag is-danger"><%= c %></span>
+            <% end %>
+          </p>
+        <% else %>
+          <p class="has-text-gray fg pt1">Sold by
+            <%= link_to product_list_path(user_id: product.user.id) do %> 
+              <span class="tag is-warning"><%= product.user.name %></span>
+            <% end %>
+          </p>
+        <% end %>
+
+        <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(product.price) %></p>
+
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+  <div class="columns ml2 mr2 is-centered" style="margin-top: 40px; margin-bottom: 40px;">
+    <%= paginate @products %>
+  </div>
+<% end %>

@@ -1,0 +1,46 @@
+<% if @locs.count < 1 %>
+  <div class="has-text-centered pt4 ml2 mr2">
+    <p class="subtitle is-1">Nothing to track</p><br>
+    <p>
+      <%= link_to root_path do %><span class="tag is-dark">Buy</span><% end %> 
+      and track here
+    </p>
+  </div>
+<% else %>
+  <div class="columns ml2 mr2 is-centered"  style="margin-top: 15px;">
+    <%= paginate @locs %>
+  </div>
+  <div class="pt4 ml2 mr2 mb4">
+    <% @locs.each do |l| %>
+      <div class="box">
+        <article class="media">
+          <div class="media-left">
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <% if l.status == 1%>
+                <p>
+                  <strong><%= l.msg %></strong>
+                  <small>@<%= duration((DateTime.now.to_i - l.updated_at.to_i)) %></small>
+                  
+                  <br>
+                  <%= link_to "Dismiss", location_path(id: l.id), class: "button is-dark", style: "float: right;", method: :delete %>
+                </p>
+              <% else %>
+                <p>
+                  <strong>Pending</strong>
+                  <small>@<%= duration((DateTime.now.to_i - l.created_at.to_i)) %></small>
+                  <br>
+                  <%= "#{l.msg}x #{product_name(l.product_id)}" %>
+                </p>
+              <% end %>
+            </div>
+          </div>
+        </article>
+      </div>
+    <% end %>
+  </div>
+  <div class="columns ml2 mr2 is-centered"  style="margin-top: 15px;">
+    <%= paginate @locs %>
+  </div>
+<% end %>

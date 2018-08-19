@@ -1,14 +1,21 @@
 <div class="keep-shopping pv1 mt4 has-text-right">
-  <%= link_to 'Keep Shopping', instruments_path, class: 'button is-warning' %>
+  <%= link_to 'Keep Shopping', products_path, class: 'button is-dark' %>
 </div>
 <hr />
 <section class="section">
-  <%= render(@cart.line_items) %>
+  <% @cart.line_items.each do |i| %>
+    <%= render(i, i: i) %>
+  <% end %>
 
   <div class="columns">
     <div class="buttons">
-      <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: "Are you sure? " }, class: "button is-danger" %>
-      <a class="button is-info show">Make Payment</a>
+      <% if @cart.line_items.count == 0 %>
+        <a class="button is-danger show" disabled>Empty Cart</a>
+        <a class="button is-success show" disabled>Purchase</a>
+      <% else %>
+        <a class="button is-danger show" id="cart-empty">Empty Cart</a>
+        <a class="button is-success show" id="cart-pay">Purchase</a>
+      <% end %>
     </div>
       
      
@@ -21,19 +28,45 @@
 </section>
 
 
-<div class="modal">
+<div class="modal" id="empty-modal">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
+      <p class="modal-card-title">Empty cart</p>
+      <button class="delete" aria-label="close" id="cart-delete"></button>
     </header>
     <section class="modal-card-body">
-      <p>Are you sure you want to pay <%= number_to_currency(@cart.total_price) %></p>
+      <p>Are you sure?</p>
     </section>
-    <footer class="modal-card-foot">
-      <%= link_to 'Pay', @cart, method: :delete, class: "button is-success" %>
-      <button class="button cancel">Cancel</button>
+    <footer class="modal-card-foot is-right">
+      <%= link_to 'Proceed', @cart, method: :delete, class: "button is-success" %>
+      <button class="button is-danger cancel" id="empty-cart-cancel">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="pay-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Checkout</p>
+      <button class="delete" aria-label="close" id="pay-delete"></button>
+    </header>
+    <section class="modal-card-body has-text-centered">
+      <div class="mb3" id="delivery-msg"></div>
+      
+      <div class="buttons is-centered">
+        <button class="button delib" id="delivery"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+        <a class="button delib in-active" target="_blank" id="gmap">
+          <i class="fa fa-google" aria-hidden="true"></i>
+        </a>
+      </div>
+      <p>Cash On Delivery</p>
+      <p>Total due <%= number_to_currency(@cart.total_price) %></p>
+    </section>
+    <footer class="modal-card-foot ">
+      <%= link_to 'Confirm', "javascript:void(0)", "data-temp": pay_carts_path(id: @cart.id), method: :delete, class: "button is-success", id: "pay-ctrl" %>
+      <button class="button is-danger cancel" id="pay-cart-cancel">Cancel</button>
     </footer>
   </div>
 </div>

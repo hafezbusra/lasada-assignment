@@ -1,27 +1,53 @@
 <div class="columns align-items-center">
-  <div class="column is-1">
-    <%= line_item.quantity %>
+  <div class="column is-1 has-text-centered">
+    <%= i.quantity %>x
   </div>
   <div class="column is-2">
-    <figure class="is-128x128 image">
-      <%= image_tag(line_item.instrument.image_url(:thumb)) %>
-    </figure>
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <figure class="is-128x128 image">
+          <% if !i.product.image.attached? %>
+            <%= image_tag("noimg.png", style: "max-height: 800px; object-fit: cover;") %>
+          <% else %>
+            <%= image_tag(i.product.image, style: "width: 128px; height: 128px; object-fit: cover; border-radius: 50%;", class: "pimg") %>
+          <% end %>
+        </figure>
+      </div>
+    </nav>
   </div>
-  <div class="column is-9">
-    <strong><%= line_item.instrument.title %></strong>
+  <div class="column is-9 ml2">
+    <strong><%= i.product.title %></strong>
     <div class="columns align-items-center">
       <div class="content column is-9">
-        <%= truncate(line_item.instrument.description, length: 140) %>
+        <%= truncate(i.product.description, length: 140) %>
       </div>
       <div class="column is-3 has-text-right">
-        <strong class="f4"><%= number_to_currency(line_item.total_price) %></strong>
+        <strong class="f4"><%= number_to_currency(i.total_price) %></strong>
       </div>
     </div>
   </div>
 </div>
 
 <div class="has-text-right">
-  <%= link_to 'Remove Item', line_item, method: :delete, data: { confirm: "Are you sure? " }, class: "button is-small mb4" %>
+  <a class="button is-small mb4 item-cancel" id="item-<%=i.id%>-remove" >Remove Item</a>
 </div>
 
 <hr/ >
+
+<div class="modal" id="item-<%=i.id%>-remove">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Remove Item</p>
+      <button class="delete item-delete" aria-label="close" id="item-<%=i.id%>-remove"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Removing <%= i.quantity %>x <%= i.product.title %>.</p>
+      <p>Are you sure?</p>
+    </section>
+    <footer class="modal-card-foot">     
+      <button class="button is-danger item-cancel" id="item-<%=i.id%>-remove">Cancel</button>
+      <%= link_to 'Proceed', i, method: :delete, class: "button is-success" %>
+    </footer>
+  </div>
+</div>

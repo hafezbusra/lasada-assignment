@@ -1,0 +1,37 @@
+<% content_for :header do %>
+<section class="hero" style="background-color: #ffe791;">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Editing Product
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<div class="pv4">
+  	<%= render 'form', product: @product %>
+  	<div class="columns mr2 ml2 is-centered">
+  		<div class="column is-8 is-centered">
+  			<button class="button is-danger add-to-cart" id="item-delete">Delete</button>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="item-delete">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Delete Listing</p>
+      <button class="delete" aria-label="close" id="item-delete-x"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Are you sure?</p>
+    </section>
+    <footer class="modal-card-foot">     
+      <%= link_to 'Proceed', @product, method: :delete, class: "button is-success" %>
+      <button class="button is-danger" id="item-delete">Cancel</button>
+    </footer>
+  </div>
+</div>

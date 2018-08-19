@@ -5,7 +5,12 @@
 
       <h2 class="title is-2">Edit <%= resource_name.to_s.humanize %></h2>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= f.error_notification %>
+        <% if f.error_notification %>
+          <span class="tag is-danger is-large" id="dev-error">
+            Unable to update &nbsp
+            <button class="delete" id="dev-dismiss"></button>
+          </span>
+        <% end %>
 
           <div class="field">
             <div class="control">
@@ -49,9 +54,28 @@
 
         <hr />
         <h3 class="title is-5">Cancel my account</h3>
-        <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+        <p>
+          Unhappy? <a id="acc-delete"><span class="tag is-danger">Cancel my account</span></a> 
+        </p>
 
       </div>
     </div>
   </div>
 </section>
+
+<div class="modal" id="acc-delete">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Delete Account</p>
+      <button class="delete" aria-label="close" id="acc-delete-x"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Are you sure?</p>
+    </section>
+    <footer class="modal-card-foot">     
+      <%= link_to "Proceed", registration_path(resource_name), class: "button is-success", method: :delete %>
+      <button class="button is-danger" id="acc-delete">Cancel</button>
+    </footer>
+  </div>
+</div>

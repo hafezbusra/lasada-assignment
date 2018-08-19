@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :pay]
+  before_action :authenticate_user!
 
   # GET /carts
   # GET /carts.json
@@ -63,8 +64,44 @@ class CartsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def location
+    session[:lat] = params[:lat]
+    session[:long] = params[:long]
+    puts session[:lat]
+    puts session[:long]
+  end
     
-    
+  def pay
+    puts session[:lat]
+    puts session[:long]
+    @red = false
+    @cart.line_items.each do |l|
+      pro = Product.where(id: l.product_id).take
+      if pro == nil || l.quantity > pro.quantity || pro.user_id == current_user.id
+        @red = true
+        l.destroy!
+      end
+    end
+
+    if @red
+      redirect_to @cart, alert: "One or more item(s) in your cart is no longer for sale. Please try again." and return
+    else
+      @cart.line_items.each do |l|
+        pro = Product.where(id: l.product_id).take
+        loc = Location.new(user_id: current_user.id, product_id: l.product_id, msg: l.quantity, lat: session[:lat], long: session[:long])
+        pro.quantity -= l.quantity
+        pro.save!
+        loc.save!
+      end
+      @cart.destroy if @cart.id == session[:cart_id]
+      session[:cart_id]
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Order has been placed! Thank you for purchasing with us!' }
+        format.json { head :no_content }
+      end
+    end
+  end  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -79,6 +116,6 @@ class CartsController < ApplicationController
 
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
-      redirect_to root_path, notice: "That cart doesn't exist"
+      redirect_to root_path, alert: "That cart doesn't exist"
     end
 end

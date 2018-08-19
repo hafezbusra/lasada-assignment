@@ -1,7 +1,8 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_line_item, only: [:show, :edit, :update, :destroy, :getdestroy]
   before_action :set_cart, only: [:create]
+  before_action :authenticate_user!
 
   # GET /line_items
   # GET /line_items.json
@@ -19,10 +20,6 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.new
   end
     
-  def payment
-      format.html { redirect_to root_path, notice: 'Thank you for buying with us.' }
-  end
-    
   # GET /line_items/1/edit
   def edit
   end
@@ -30,8 +27,17 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    instrument = Instrument.find(params[:instrument_id])
-    @line_item = @cart.add_instrument(instrument)
+    product = Product.find(params[:product_id])
+    current_item = @cart.line_items.find_by(product_id: product.id)
+    if current_user && product.user_id == current_user.id
+      redirect_to product, alert: 'You cannot buy your own product.' and return
+    end
+
+    if current_item && current_item.quantity >= product.quantity
+      redirect_to product, alert: 'Maxed out quantity' and return
+    end
+
+    @line_item = @cart.add_product(product)
 
     respond_to do |format|
       if @line_item.save
@@ -57,7 +63,7 @@ class LineItemsController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
@@ -77,6 +83,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:instrument_id)
+      params.require(:line_item).permit(:product_id)
     end
 end

@@ -1,0 +1,68 @@
+<% content_for :header do %>
+<section class="hero" style="background-color: #ffe791;">
+	<div class="hero-body">
+		<div class="container">
+			<% if current_user && @user.id == current_user.id %>
+				<h1 class="title">
+					My Listings
+				</h1>
+			<% else %>
+				<h1 class="title">
+					<%= @user.name %>'s Listings
+				</h1>
+			<% end %>
+		</div>
+	</div>
+</section>
+<% end %>
+
+<% if @products.count < 1%>
+	<section class="hero">
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<h1 class="subtitle is-1">
+					No Listing
+				</h1>
+			</div>
+		</div>
+	</section>
+<% else %>
+	<div class="columns ml2 mr2 is-centered" style="margin-top: 40px;">
+	  <%= paginate @products %>
+	</div>
+
+	<div class="product-index-grid pt4 mb4">
+		<% @products.each do |product| %>
+		    <div class="product border-light" style="background-color: #fff7e2;">
+		      	<div class="product-thumb">
+		      		<% if !product.image.attached? %>
+						<%= link_to image_tag("noimg.png", style: "max-height: 800px; object-fit: cover;"), product %>
+					<% else %>
+						<%= link_to image_tag(product.image, style: "height: 150px; object-fit: cover;", class: "pimg"), product %>
+					<% end %>
+		        	<div class="condition">
+						<% if product.quantity? %>
+							<% if product.quantity > 0 && product.condition? %>
+								<span class="tag is-dark"><%= product.condition %></span>
+								<span class="tag is-dark"><%= "x#{product.quantity}" %></span>
+							<% else %>
+								<span class="tag is-dark"><%= product.condition %></span>
+								<span class="tag is-dark"><%= "x#{product.quantity}" %></span>
+							<% end %>
+						<% else %>
+							<span class="tag is-danger">Sold out</span>
+						<% end %>
+					</div>
+				</div>
+		        <div class="pa3">
+					<h3 class="fw7 f4 title"><%= link_to product.title, product %></h3>
+					<p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(product.price) %></p>
+		    	</div>
+		    </div>
+		<% end %>
+	</div>
+
+	<div class="columns ml2 mr2 is-centered" style="margin-top: 40px; margin-bottom: 40px;">
+	  <%= paginate @products %>
+	</div>
+<% end %>

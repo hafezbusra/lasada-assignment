@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'mysql2'
 # Use Puma as the app server
@@ -33,13 +33,14 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bulma-rails', '~> 0.6.1'
-gem 'simple_form', '~> 3.5'
-gem 'devise', '~> 4.4'
-gem 'gravatar_image_tag', '~> 1.2'
-gem 'carrierwave'
-gem 'cloudinary', '~> 1.2', '>= 1.2.2'
-gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'bulma-rails'
+gem 'simple_form'
+gem 'devise'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'bootsnap'
+gem 'image_processing'
+gem "azure-storage", require: false
 
 
 group :development, :test do

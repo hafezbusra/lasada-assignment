@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bulmarket-213809",
+  "private_key_id": "0c82bd60a8d87c33ec32a2ab12b2ea5a61f761f1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCKiBJYRMeNA6bH\nRmYzabaVjoptpGR6Kjcq6Yuerff9tS6LOf0jvyew2QZ97U6xO1t9dJMWJCwXtukU\njbsb18OCj9N9EzCqeYJAlPCkdYxbCJ6TWzode9gqVns3a2q2ISF10aN7axeQN+1I\nZhkwlig0Ssq9YIxZx9+2v21Tl+y58C37hlyMrvGgZ7R2WVHPgrTaksLqwRPjikAF\nN8zJABZkW9BK9UVdcGpZVnEGPnvPR+IxQUPTOwMrcJTuBcV2aqxOd5fGqnnvKme0\nnomBPYwh9KrEmPWj8SH/ukGQUETHkQVc9PzMzneWb3fH+GULVJ7pczrZtMOr2asf\noW/RYLVpAgMBAAECggEAEZ+KX+bOEQsmICM9VKyN4PxLcXPQoXb14jRoQeVFT2YJ\neAZGRRIoGTgeuo3iLStNMgpOvOoYnuKyx53ZMAtUkKs93yM+FW3US2V3MKDQnHMe\nA0Z/f+k1oHs0fSIh5u4TjOLAvq5qxrrKqaNtcHAlyLM8E/fwmupRtDSpkpEY+TVc\nIwljcm0AVPUpkGxRNCStgRvB5eqI/Xf9GGYQ7CyPKNNoy6LczTZ0aoai1IHCf6/e\nxI8uKQh7i0w56X3m3oL24XNKB6V/UO9eecUE03U02CowIvjf9LX7mcjpwjXBap5c\ns+hlSfnqjz7v/vasEfQrWTPKi1hvFk1ejebIpRXDZQKBgQDAio72OyNuC00V+YBC\nhzhjhtFXGz+JAdDEt2HSfhNah7W/CPwF7ylgpCVea1JiKMD/dV1MoR8WtDJ+X4rj\ndsrneklmqw0ewRiCWz8KwrmzJHVO+29KXWIghf605rMRsw0ECQLACCL2caH5joqi\nJRtHHNtlzHWyN6ap0arpmxav1QKBgQC4MIHIUjD+ZfajoNSuJYMgSg1fBDDvgu3u\ntuHfuZiJXsD2Nl6noq8cSQWk4dGT/aSCoK/b9A5xCzg/Y2XsP8naqcFnETRj7Ooo\nb7/4E/W/kelv4K7Renff+abOd+6YmrK2vlSQ3+4gdGJK4UaMnZ0C+p/HA93Ravk6\ns0X3QD+NRQKBgQCSPuxV5ReFN3pGzat5XOIc3sNVSXIZ69IaCTx5OKAUrG4E+5sK\nGt2v9R4ZOKVrv47QuuGyGdPWV+reiE2jdpCp//2OyS//AyZNpWceEkgg5Plhk6O1\ntXaaQ4zy9SRgtkKVpQ58s/FyhV9FgdqVTGAKxMV07jcbth+Wb5ZFODKkPQKBgCNn\nR3ruuXYcuTSodFjo4vRw53MNBi7zdrJ8upvbO8Ojz+lDeBw2u/vu2UPhF/yfM2Dc\nbBEWLzRxWKVugKfRdwYtvPwHpY9TeYq+OCMCCymAbWNQx6mCJcqKXRKwoM76ZUGV\nAgI62LWqST5lYL8kiIqLC+0gBCH9stwim180HUMVAoGBAJ+tkB0G5ll0qvu0bfMz\nTMCT16l3kN17lecQ+J+IWrBFFJ1ExbwRz8PdltBIhRAbTeGbZzY4FzhgmdBrvCF9\njHJTZbnQY7XijbgLMKTo33URvdyvDGszlERtZ5S0JnntRdQFEfTwL43qu009vhXj\npO1ppafeDhrN0fDmQgwPzlft\n-----END PRIVATE KEY-----\n",
+  "client_email": "bulmarket@bulmarket-213809.iam.gserviceaccount.com",
+  "client_id": "107937159975940438828",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bulmarket%40bulmarket-213809.iam.gserviceaccount.com"
+}

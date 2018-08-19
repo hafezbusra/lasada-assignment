@@ -20,6 +20,13 @@ $link-hover: #222;
 @import "bulma";
 @import "functions";
 
+.pimg.seen {
+  transition: opacity 0.2s ease-in-out;;
+}
+
+.in-active {
+  display: none;
+}
 
 .notification {
   border-radius: 0;
@@ -29,11 +36,11 @@ $link-hover: #222;
   margin-bottom: 0;
 }
 
-.instrument-index-grid {
+.product-index-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 
-  .instrument {
+  .product {
     border-left: 0;
     border-top: 0;
     position: relative;
@@ -49,7 +56,7 @@ $link-hover: #222;
     }
   }
 
-  .instrument-thumb {
+  .product-thumb {
     position: relative;
     max-height: 150px;
     overflow: hidden;
