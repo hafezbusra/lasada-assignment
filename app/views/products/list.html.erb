@@ -56,6 +56,10 @@
 				</div>
 		        <div class="pa3">
 					<h3 class="fw7 f4 title"><%= link_to product.title, product %></h3>
+					<% c = loc_count(product.id) %>
+		            <% if c > 0 %>
+		              <span class="tag is-danger"><%= c %></span>
+		            <% end %>
 					<p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(product.price) %></p>
 		    	</div>
 		    </div>
