@@ -94,4 +94,7 @@ Rails.application.configure do
 
   # Force use HTTPS
   config.force_ssl = true
+
+  # Use Credentials
+  config.require_master_key = true
 end
