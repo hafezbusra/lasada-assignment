@@ -17,7 +17,7 @@ class LocationsController < ApplicationController
 		else
 			@temp = @loc.product_id
 			@name = product_name(@temp)
-			if @user = nil
+			if @user == nil
 				@loc.destroy
 			else
 				@loc.product_id = nil
