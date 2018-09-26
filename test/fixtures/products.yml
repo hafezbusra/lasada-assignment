@@ -8,6 +8,8 @@ one:
   finish: MyString
   title: MyString
   price: 9.99
+  quantity: 9
+  user_id: 1
 
 two:
   brand: MyString
@@ -17,3 +19,5 @@ two:
   finish: MyString
   title: MyString
   price: 9.99
+  quantity: 9
+  user_id: 1
